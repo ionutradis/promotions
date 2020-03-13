@@ -1,0 +1,13 @@
+{
+    "name": "ionutradis/promotions",
+    "description": "Commerce module that handle promotion codes",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Radis Ionut",
+            "email": "ionut.radis@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
