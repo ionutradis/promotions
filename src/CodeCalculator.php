@@ -10,12 +10,14 @@ class CodeCalculator
     var $allowedProducts = [];
     var $allowedProductCategories = [];
     var $qualifiedProducts = [];
+    var $allowAllProducts = false;
 
     public function __construct($model)
     {
         $this->data = ($model);
         if($this->data !== null) {
             $this->getProducts();
+            $this->getCategories();
             $this->voucherRules = ['type' => $this->data['type'], 'value' => $this->data['value']];
         }
     }
@@ -24,8 +26,12 @@ class CodeCalculator
         $initialProductPrice = $productParams['price'];
         $productId = $productParams['product_id'];
         $productQuantity = $productParams['quantity'];
-        $allowedProducts = $this->allowedProducts;
-        $allowedProductQty = $allowedProducts[$productId]['qty'];
+        if(count($this->allowedProducts) > 0) {
+            $allowedProducts = $this->allowedProducts;
+            $allowedProductQty = $allowedProducts[$productId]['qty'];
+        } else {
+            $allowedProductQty = 1;
+        }
 
         if(($productQuantity <= $allowedProductQty)) {
             $quantityInject = $productQuantity;
@@ -59,13 +65,25 @@ class CodeCalculator
                 $this->qualifiedProducts = array_intersect($products, array_keys($this->allowedProducts));
             }
         } else {
-            return null;
+            return false;
         }
     }
 
     private function getProducts() {
         if(isset($this->data['products']) && null !== $this->data['products']) {
             $this->allowedProducts = json_decode($this->data['products'], 1);
+        } else {
+            return false;
+        }
+    }
+
+    public function addPreparedProducts($products) {
+        $this->allowedProducts = array_replace_recursive($products, $this->allowedProducts);
+    }
+
+    private function getCategories() {
+        if(isset($this->data['product_categories']) && null !== $this->data['product_categories']) {
+            $this->allowedProductCategories = json_decode($this->data['product_categories'], 1);
         } else {
             return false;
         }

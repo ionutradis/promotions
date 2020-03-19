@@ -1,13 +1,30 @@
 {
     "name": "ionutradis/promotions",
     "description": "Commerce module that handle promotion codes",
-    "type": "package",
+    "type": "library",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Radis Ionut",
             "email": "ionut.radis@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "files":
+        [
+        ]
+    ,
+        "psr-4": {
+            "ionutradis\\promotions\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ionutradis\\promotions\\PromotionsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
 }

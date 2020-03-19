@@ -51,7 +51,7 @@ class CodeFactory
             $this->setRule(['minCartAmount' => $int]);
     }
 
-                    public function requiredProducts($param) {
+    public function requiredProducts($param) {
         $this->setRule(['requiredProducts' => $param]);
     }
 

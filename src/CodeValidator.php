@@ -26,7 +26,7 @@ class CodeValidator
     }
 
     public function checkUser($userId) {
-        if(count($this->allowedTo)>0) {
+        if(null !== $this->allowedTo && count($this->allowedTo)>0) {
             if(in_array($userId, $this->allowedTo)) {
 //                return true;
             } else {
@@ -35,7 +35,6 @@ class CodeValidator
                 return false;
             }
         } else {
-            return null;
         }
     }
 
