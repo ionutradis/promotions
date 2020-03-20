@@ -32,13 +32,13 @@ class CodeFactory
         switch (gettype($param)) {
             case 'integer':
                 $this->setRule(['onlyFor' => $param]);
-            break;
+                break;
             case 'array':
                 $this->setRule(['onlyFor' => ($param)]);
-            break;
+                break;
             default:
                 die;
-            break;
+                break;
         }
     }
 
