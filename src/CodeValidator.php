@@ -16,7 +16,7 @@ class CodeValidator
             $this->failed = true;
             $this->error = 'code not found';
         } else {
-            $this->checkAvailability();
+//            $this->checkAvailability();
             $this->getUsers();
         }
     }
